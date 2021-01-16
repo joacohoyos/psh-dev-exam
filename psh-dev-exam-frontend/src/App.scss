@@ -1,0 +1,18 @@
+body{
+    background: #292C33;
+}
+
+.Container {
+    width: 60%;
+    margin: auto;
+    .Title {
+        margin: auto;
+        text-align: center;
+        font-family: 'Bebas Neue', 'sans-serif';
+        color: #E4E5E7;
+    }
+    .LastUpdate {
+        font-weight: 400;
+        color: rgb(243, 49, 49)
+    }
+}

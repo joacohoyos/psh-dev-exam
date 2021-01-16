@@ -1,0 +1,48 @@
+.PlayerCard {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    border: 1px solid lightgray; 
+    border-radius: 5px;
+    padding: 7px;
+    margin: 5px 0px;
+    background-color: #3D3F4C;
+    &:hover {
+        zoom: 1.2;
+    }
+
+    .Rank {
+        flex: 1;
+        font-size: 1.2rem;
+        .Gold {
+            color: gold;
+        }
+        .Silver {
+            color: silver;
+        }
+        .Bronze {
+            color: brown;
+        }
+    }
+
+    .ProfileImage{
+        flex: 2;
+        margin: 0 10px;
+        
+        img {
+            
+            border-radius: 50%;
+        }
+    }
+
+    .Nickname {
+        margin: 0 10px;
+        flex: 3;
+    }
+
+    .Score {
+        flex: 2;
+    
+    
+    }
+}
