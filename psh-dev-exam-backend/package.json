@@ -1,0 +1,23 @@
+{
+  "name": "psh-dev-exam-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "env-cmd -f ./config/.env nodemon ./dist/app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cron": "^1.8.2",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5"
+  },
+  "devDependencies": {
+    "@types/cron": "^1.7.2",
+    "@types/express": "^4.17.11",
+    "@types/node": "^14.14.21"
+  }
+}
