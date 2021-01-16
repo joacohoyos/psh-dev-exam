@@ -5,14 +5,48 @@ body{
 .Container {
     width: 60%;
     margin: auto;
+    
+    @media (min-width: 610px) and (max-width: 700px) {
+        width:85%;
+    }
+  
+    @media (max-width: 610px) {
+        width:90%;
+    }
     .Title {
         margin: auto;
         text-align: center;
         font-family: 'Bebas Neue', 'sans-serif';
         color: #E4E5E7;
     }
-    .LastUpdate {
-        font-weight: 400;
-        color: rgb(243, 49, 49)
+    .Info{
+        display: flex;
+        justify-content: space-between;
+        .LastUpdate {
+            display: inline-block;
+            .LastUpdateDate {
+                font-weight: 400;
+                color: rgb(243, 49, 49)
+            }
+        }
+        .CSVLink {
+            border: 1px solid lightgray; 
+            height: 100%;
+            display: inline-block;
+            align-self: center;
+            text-decoration: none;
+            padding: 8px;
+            border-radius: 6px;
+            background: #E4E5E7;
+            color: #3D3F4C;
+            font-weight: 600;
+            &:hover{
+                color: #E4E5E7;
+                background: #3D3F4C;
+                
+
+            }
+        }
+        
     }
 }
