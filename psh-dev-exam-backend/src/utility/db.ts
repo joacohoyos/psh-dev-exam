@@ -17,6 +17,7 @@ export const getTopPlayers = async () => {
         profileImage: r.profile_image,
         totalScore: r.totalScore
     }})
+    connection.end()
     const lastUpdate = await getLastUpdate()
     return {
         lastUpdate,
@@ -29,6 +30,7 @@ const getLastUpdate = async () => {
     const query = 'SELECT created_at from STAT order by created_at desc limit 1;'
     const [rows] = await connection.query<RowDataPacket[]>(query)! 
     const lastUpdate = rows[0].created_at
+    connection.end()
     return lastUpdate
 }
 
@@ -39,14 +41,16 @@ const generateRandomScore = () => {
 
 const insertStat = async (playerId: number) => {
     const query = `INSERT INTO STAT (player_id, score) VALUES('${playerId}', ${generateRandomScore()})`
-        const connection = await getConnection()
-        await connection.execute(query)
+    const connection = await getConnection()
+    await connection.execute(query)
+    connection.end()
 }
 
 const insertPlayer = async (nickname: string, profileImage: string) => {
     const query = `INSERT IGNORE INTO PLAYER (nickname, profile_image) VALUES('${nickname}', '${profileImage}')`
-        const connection = await getConnection()
-        await connection.execute(query, [nickname, profileImage])
+    const connection = await getConnection()
+    await connection.execute(query, [nickname, profileImage])
+    connection.end()
 }
 
 const getPlayerId = async (nickname: string) => {
@@ -54,6 +58,7 @@ const getPlayerId = async (nickname: string) => {
     const query = `SELECT p.id FROM player p WHERE p.nickname = '${nickname}'`
     const [rows] = await connection.query<RowDataPacket[]>(query, [nickname])
     const id = rows[0].id
+    connection.end()
     return id
 }
 
