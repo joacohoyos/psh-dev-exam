@@ -12,7 +12,7 @@ var job = new CronJob('00 */1 * * * *', async () => {
         try{
             const data = await (await axios.get('')).data.results[0]
             await insertPlayerStat(data.login.username, data.picture.medium)
-            await sleep(500)
+            await sleep(1000)
         } catch(error) {
             console.log('Error while inserting player stat', error.message)
         }
