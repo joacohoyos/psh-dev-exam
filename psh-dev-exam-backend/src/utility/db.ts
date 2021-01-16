@@ -6,7 +6,6 @@ const getConnection = async () => {
     return connection
 }
 
-
 export const getTopPlayers = async () => {
     const connection: Connection = await getConnection()
     const query = 'SELECT p.nickname, p.profile_image, SUM(s.score) as totalScore'
@@ -14,11 +13,23 @@ export const getTopPlayers = async () => {
     + ' GROUP BY p.nickname, p.profile_image ORDER BY SUM(s.score) DESC LIMIT 10;'
     const [rows] = await connection.query<RowDataPacket[]>(query)! 
     const topPlayers = rows.map(r => { return {
-            nickname: r.nickname,
-            profileImage: r.profile_image,
-            totalScore: r.totalScore
+        nickname: r.nickname,
+        profileImage: r.profile_image,
+        totalScore: r.totalScore
     }})
-    return topPlayers
+    const lastUpdate = await getLastUpdate()
+    return {
+        lastUpdate,
+        topPlayers
+    }
+}
+
+const getLastUpdate = async () => {
+    const connection: Connection = await getConnection()
+    const query = 'SELECT created_at from STAT order by created_at desc limit 1;'
+    const [rows] = await connection.query<RowDataPacket[]>(query)! 
+    const lastUpdate = rows[0].created_at
+    return lastUpdate
 }
 
 

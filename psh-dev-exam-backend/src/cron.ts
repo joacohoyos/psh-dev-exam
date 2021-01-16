@@ -11,7 +11,7 @@ var job = new CronJob('00 */1 * * * *', async () => {
             const data = await (await axios.get('')).data.results[0]
             await insertPlayerStat(data.login.username, data.picture.medium)
         } catch(error) {
-            console.log('Error while inserting player stat', error)
+            console.log('Error while inserting player stat', error.message)
         }
     }
     console.log(`cronJob simulated ${numberOfPlayers} players stats`)
